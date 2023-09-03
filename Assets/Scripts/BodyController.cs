@@ -5,12 +5,20 @@ using UnityEngine;
 public class BodyController : MonoBehaviour
 {
     // Start is called before the first frame update
+    private Rigidbody2D rb;
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void FlipBody(float sign) {
-        transform.localScale = new Vector3(sign * Mathf.Abs(transform.localScale.x), 1, 1);
+        if (sign > 0) {
+            //rb.MoveRotation(Quaternion.Euler(0, 0, 0)); 
+            rb.SetRotation(Quaternion.Euler(0, 0, transform.rotation.z)); 
+        } else {
+            //rb.MoveRotation(Quaternion.Euler(0, 180f, 0)); 
+            rb.SetRotation(Quaternion.Euler(0, 180f, transform.rotation.z));
+        }
+        //transform.localScale = new Vector3(sign * Mathf.Abs(transform.localScale.x), 1, 1);
     }
 }

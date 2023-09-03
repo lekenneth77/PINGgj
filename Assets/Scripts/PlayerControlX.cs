@@ -30,7 +30,7 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = transform.GetChild(0).GetComponent<Rigidbody2D>();
         controls = new Controls();
         controls.PlayerBinds.AddCallbacks(this);
         controls.Enable();
@@ -42,11 +42,12 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
     // Update is called once per frame
     void Update()
     {
-        
+        /*
         if(rb.velocity.magnitude > 0.05f){
             isFlipped = Mathf.Sign(rb.velocity.x) == -1;
             body.FlipBody(Mathf.Sign(rb.velocity.x));
         }
+        */
     }
 
     void FixedUpdate()
@@ -68,10 +69,8 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
 
         if (!context.performed || !isGrounded) { return; }
         Debug.Log("Jump");
-        Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 jumpDir = (mouse - new Vector2(transform.position.x, transform.position.y)).normalized;
-
-        rb.AddForce(jumpDir * jumpForce);
+        
+        rb.AddForce(inputVel * jumpForce);
 
     }
 
@@ -88,7 +87,7 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         if (!context.performed || currBullets <= 0) { return; }
         Debug.Log("Shoot!");
         Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 shootDir = (mouse - new Vector2(transform.position.x, transform.position.y)).normalized;
+        Vector2 shootDir = (mouse - new Vector2(body.transform.position.x, body.transform.position.y)).normalized;
         rb.AddForce(-shootDir * recoilSpeed);
         currBullets--;
         bulletTxt.text = currBullets + " / " + maxBullets;
