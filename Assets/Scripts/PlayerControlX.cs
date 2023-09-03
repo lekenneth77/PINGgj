@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
 {
@@ -14,7 +15,13 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
     public bool isGrounded;
     public bool isFlipped;
 
+
+
     public BodyController body;
+
+    public TextMeshProUGUI bulletTxt;
+    private int maxBullets = 50;
+    private int currBullets;
     private Rigidbody2D rb;
     private Vector2 inputVel;
     private Controls controls;
@@ -27,6 +34,9 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         controls = new Controls();
         controls.PlayerBinds.AddCallbacks(this);
         controls.Enable();
+
+        currBullets = maxBullets;
+        bulletTxt.text = currBullets + " / " + maxBullets;
     }
 
     // Update is called once per frame
@@ -69,15 +79,19 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
     {
         if (!context.performed) { return; }
         Debug.Log("Reload!");
+        currBullets = maxBullets;
+        bulletTxt.text = currBullets + " / " + maxBullets;
     }
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-        if (!context.performed) { return; }
+        if (!context.performed || currBullets <= 0) { return; }
         Debug.Log("Shoot!");
         Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 shootDir = (mouse - new Vector2(transform.position.x, transform.position.y)).normalized;
         rb.AddForce(-shootDir * recoilSpeed);
+        currBullets--;
+        bulletTxt.text = currBullets + " / " + maxBullets;
     }
 
     public void OnFlip(InputAction.CallbackContext context) {
