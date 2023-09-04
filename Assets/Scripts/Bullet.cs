@@ -16,15 +16,18 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //this.GetComponent<SpriteRenderer>().color = new Color(Random.Range(0, 1f), Random.Range(0, 1f), 1);
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
+    private void OnCollisionEnter2D(Collision2D other)
+    {
 
-        if(other.gameObject.layer != LayerMask.NameToLayer("Player")){
+        if (other.gameObject.layer != LayerMask.NameToLayer("Player"))
+        {
             Destroy(gameObject);
         }
-        if (other.gameObject.GetComponent<Swordfish>()) {
+        if (other.gameObject.GetComponent<Swordfish>())
+        {
             Swordfish fish = other.gameObject.GetComponent<Swordfish>();
             fish.GotShot();
         }
