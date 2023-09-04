@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
 {
@@ -32,6 +33,11 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
     private float jumpBuffer = 0;
     public float jumpBufferMax = .5f;
     private bool jumpBufferCD = true;
+
+    public Image oxyMeter;
+    private float maxTime = 300f;
+    private float currentTime;
+
     private Controls controls;
 
 
@@ -44,6 +50,7 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
 
         currBullets = maxBullets;
         bulletTxt.text = currBullets + " / " + maxBullets;
+        currentTime = maxTime;
     }
 
     // Update is called once per frame
@@ -59,7 +66,8 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         */
 
         jumpBuffer -= Time.deltaTime;
-
+        currentTime -= Time.deltaTime;
+        oxyMeter.fillAmount = currentTime / maxTime;
     }
 
     void FixedUpdate()
@@ -78,10 +86,10 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-        if (context.performed) {
-            moveSFX?.Play();
-        } else if (context.canceled) {
-            moveSFX?.Stop();
+        if (context.performed && moveSFX) {
+            moveSFX.Play();
+        } else if (context.canceled && moveSFX) {
+            moveSFX.Stop();
         }
         inputVel = context.ReadValue<Vector2>();
         // Debug.Log(inputVel);
@@ -94,7 +102,9 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         if (!context.performed || onJumpCD || jumpBuffer < 0) { return; }
         Debug.Log("Jump");
         rb.AddForce(inputVel * jumpForce);
-        jumpSFX?.Play();
+        if (jumpSFX) {
+            jumpSFX?.Play();
+        }
         StartCoroutine("JumpCooldown");
         jumpBuffer = 0;
     }
@@ -126,7 +136,9 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         currBullets--;
         bulletTxt.text = currBullets + " / " + maxBullets;
         gun.Shoot();
-        shootSFX?.Play();
+        if (shootSFX) {
+            shootSFX?.Play();
+        }
     }
 
     public void OnFlip(InputAction.CallbackContext context) {

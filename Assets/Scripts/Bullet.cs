@@ -24,5 +24,10 @@ public class Bullet : MonoBehaviour
         if(other.gameObject.layer != LayerMask.NameToLayer("Player")){
             Destroy(gameObject);
         }
+        if (other.gameObject.GetComponent<Swordfish>()) {
+            Swordfish fish = other.gameObject.GetComponent<Swordfish>();
+            fish.GotShot();
+        }
+        // hiiiiiii
     }
 }

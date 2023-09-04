@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Swordfish : MonoBehaviour
 {
@@ -13,16 +14,38 @@ public class Swordfish : MonoBehaviour
 
     private bool isAttacking;
     private bool startedAttacking;
+    private bool isCharging;
     private bool endAttack;
 
     private Vector2 chargeDir;
 
     public float t = .2f;
 
+    public float roamSpeed;
+    public float roamDist;
+    float currentInterval;
+    public Vector2 nextDir;
+
+    public bool hitWall;
+
+    public bool dead;
+
+    public SpriteRenderer headSprite;
+    private int health = 3;
+
+    private Vector2 stuckPos;
+    public AudioSource alertSFX;
+    private Vector2 startPos;
+
+    public Sprite[] damageSprites;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        startPos = transform.position;
+        nextDir = -Vector2.right;
+        
     }
 
     // Update is called once per frame
@@ -31,10 +54,16 @@ public class Swordfish : MonoBehaviour
         if(endAttack){
             rb.velocity =  chargeDir * chargeSpeed;
         }
+        
+        if(hitWall){
+            rb.position = stuckPos;
+            return;
+        }
+        if (dead) {return;}
         if (startedAttacking) {return;}
         if(!isAttacking){
             isAttacking = DetectPlayer();
-            Roaming();
+            // Roaming();
         } else{
             StartCoroutine("AttackPlayer");
         }
@@ -44,7 +73,11 @@ public class Swordfish : MonoBehaviour
 
     
     private void Roaming(){
-
+        if(currentInterval != Mathf.Floor(Time.time / roamDist)){
+            currentInterval = Mathf.Floor(Time.time / roamDist);
+            nextDir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+        }
+        rb.velocity = (nextDir * roamSpeed);
     }
 
     private bool DetectPlayer(){
@@ -52,8 +85,8 @@ public class Swordfish : MonoBehaviour
         int layerMask = 1 << 7;
         layerMask = ~layerMask;
         Vector2 rayDir = (new Vector2(player.position.x, player.position.y)- new Vector2(transform.position.x, transform.position.y)).normalized;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDir, 12.5f ,layerMask);
-        if (hit.collider.tag == "Player") {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDir, 15f ,layerMask);
+        if (hit && hit.collider.CompareTag("Player")) {
             return true;
         } else {
             return false;
@@ -77,7 +110,7 @@ public class Swordfish : MonoBehaviour
         Debug.Log("Started Attacking!");
         startedAttacking = true;
         rb.velocity = Vector3.zero;
-        
+        alertSFX.Play();
         while(chargeTime > 0){
             chargeTime -= Time.deltaTime;
            
@@ -86,10 +119,14 @@ public class Swordfish : MonoBehaviour
             
             float nextAngle = NearestAngle(transform.rotation.eulerAngles.z, a, t);
             transform.GetComponent<Rigidbody2D>().MoveRotation(nextAngle);
-
+            if (dead) {yield break;}
 
             yield return new WaitForEndOfFrame();
         }
+        if (dead) {
+            yield break;
+        }
+        isCharging = true;
         chargeDir = (new Vector2(player.position.x, player.position.y)- new Vector2(transform.position.x, transform.position.y)).normalized;
         rb.velocity = chargeDir * chargeSpeed;
         endAttack = true;
@@ -97,6 +134,34 @@ public class Swordfish : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
        
+    }
+
+    private void OnTriggerStay2D(Collider2D other) {
+        
+        if(!isCharging) return;
+        if(other.gameObject.layer != LayerMask.NameToLayer("Enemy") && !other.CompareTag("Player")){
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            endAttack = false;
+            isCharging = false;
+            stuckPos = rb.position;
+            hitWall = true;
+        }
+
+        if(other.CompareTag("Player")){
+            endAttack = false;
+            print("kill");
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    public void GotShot() {
+        if (health <= 0) {return;}
+        if (health == 3) {
+            isAttacking = true;
+        }
+        health--;
+        headSprite.sprite = damageSprites[health];
+        dead = health <= 0;
     }
 
 }

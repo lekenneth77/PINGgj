@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollisionAudio : MonoBehaviour
 {
-    public AudioSource audio;
+    public AudioSource aud;
     private Rigidbody2D rb;
     private bool onCD;
     private float cooldown = 0.5f;
@@ -16,7 +16,7 @@ public class CollisionAudio : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         
         if(rb.velocity.magnitude > .2 && !onCD){
-            audio.Play();
+            aud.Play();
             StartCoroutine("AudioCooldown");
         }
     }
