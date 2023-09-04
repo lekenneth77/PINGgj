@@ -6,6 +6,8 @@ public class BodyController : MonoBehaviour
 {
     // Start is called before the first frame update
     private Rigidbody2D rb;
+
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -21,4 +23,5 @@ public class BodyController : MonoBehaviour
         }
         //transform.localScale = new Vector3(sign * Mathf.Abs(transform.localScale.x), 1, 1);
     }
+   
 }
