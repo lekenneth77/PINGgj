@@ -6,6 +6,8 @@ public class CollisionAudio : MonoBehaviour
 {
     public AudioSource audio;
     private Rigidbody2D rb;
+    private bool onCD;
+    private float cooldown = 0.5f;
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -13,8 +15,15 @@ public class CollisionAudio : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         
-        if(rb.velocity.magnitude > .2){
+        if(rb.velocity.magnitude > .2 && !onCD){
             audio.Play();
+            StartCoroutine("AudioCooldown");
         }
+    }
+
+    private IEnumerator AudioCooldown() {
+        onCD = true;
+        yield return new WaitForSeconds(cooldown);
+        onCD = false;
     }
 }

@@ -310,7 +310,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -331,8 +331,8 @@ Transform:
   m_GameObject: {fileID: 114102777}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.48, y: -4.44, z: 0}
-  m_LocalScale: {x: 9.281977, y: 1, z: 1}
+  m_LocalPosition: {x: -6.1034, y: -48.6054, z: 0}
+  m_LocalScale: {x: 33.86147, y: 3.5648363, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -346,8 +346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 114586632}
-  - component: {fileID: 114586633}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Swordfish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +362,7 @@ Transform:
   m_GameObject: {fileID: 114586631}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.077899, y: -2.9550521, z: -0.08390705}
+  m_LocalPosition: {x: -25.12, y: -21.28, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -374,33 +373,6 @@ Transform:
   - {fileID: 1634352196}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114586633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 114586631}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fae08a438f54745408d81943233e394d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotSpeed: 200
-  speed: 200
-  jumpForce: 50
-  recoilSpeed: 400
-  isGrounded: 0
-  isFlipped: 0
-  gun: {fileID: 0}
-  body: {fileID: 572553361}
-  bulletTxt: {fileID: 0}
-  jumpSFX: {fileID: 0}
-  shootSFX: {fileID: 0}
-  moveSFX: {fileID: 0}
-  rb: {fileID: 0}
-  onJumpCD: 0
-  jumpBufferMax: 0.5
 --- !u!1 &140508326
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +385,7 @@ GameObject:
   - component: {fileID: 140508328}
   m_Layer: 0
   m_Name: Jumping Audio
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -542,7 +514,7 @@ GameObject:
   - component: {fileID: 171639789}
   - component: {fileID: 171639788}
   - component: {fileID: 171639791}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Right Pectoral Fin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -747,7 +719,7 @@ GameObject:
   - component: {fileID: 177114498}
   m_Layer: 6
   m_Name: Right Arm
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1132,7 +1104,7 @@ GameObject:
   - component: {fileID: 282275095}
   m_Layer: 0
   m_Name: Shooting Audio
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1351,7 +1323,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1394,7 +1366,7 @@ GameObject:
   - component: {fileID: 369946892}
   m_Layer: 6
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1592,7 +1564,7 @@ GameObject:
   - component: {fileID: 413783633}
   - component: {fileID: 413783632}
   - component: {fileID: 413783635}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1951,7 +1923,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2081,7 +2053,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2102,8 +2074,8 @@ Transform:
   m_GameObject: {fileID: 516491125}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 10.55, y: -0.02, z: 0}
-  m_LocalScale: {x: 19.862196, y: 1.3634123, z: 1}
+  m_LocalPosition: {x: 8.7447, y: -32.8484, z: 0}
+  m_LocalScale: {x: 70.80547, y: 4.9738483, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2195,7 +2167,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.003, y: 1.978, z: -10}
+  m_LocalPosition: {x: -18.53, y: -41.6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2248,7 +2220,7 @@ GameObject:
   - component: {fileID: 533889919}
   - component: {fileID: 533889918}
   - component: {fileID: 533889921}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Anal Fin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2544,7 +2516,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2674,7 +2646,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2695,8 +2667,8 @@ Transform:
   m_GameObject: {fileID: 568600568}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.38, y: -0.08, z: 0}
-  m_LocalScale: {x: 9.281977, y: 1, z: 1}
+  m_LocalPosition: {x: -6.4682, y: -33.0623, z: 0}
+  m_LocalScale: {x: 33.86147, y: 3.5648363, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2714,7 +2686,7 @@ GameObject:
   - component: {fileID: 572553359}
   - component: {fileID: 572553358}
   - component: {fileID: 572553361}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2944,9 +2916,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 572553356}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b94b124edefa31a4cb039c1e910b26a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 362b655925e80a14a90e61a8861108ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 369946889}
+  chargeSpeed: 25
+  chargeTime: 2
+  t: 0.2
 --- !u!1 &590049534
 GameObject:
   m_ObjectHideFlags: 0
@@ -2959,7 +2935,7 @@ GameObject:
   - component: {fileID: 590049536}
   m_Layer: 6
   m_Name: Penguin
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2973,7 +2949,7 @@ Transform:
   m_GameObject: {fileID: 590049534}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.003, y: 1.978, z: 0}
+  m_LocalPosition: {x: -18.53, y: -41.6, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3006,7 +2982,7 @@ MonoBehaviour:
   moveSFX: {fileID: 956576942}
   rb: {fileID: 369946890}
   onJumpCD: 0
-  jumpBufferMax: 2
+  jumpBufferMax: 0.5
 --- !u!1 &591218224
 GameObject:
   m_ObjectHideFlags: 0
@@ -3110,7 +3086,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3240,7 +3216,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3261,8 +3237,8 @@ Transform:
   m_GameObject: {fileID: 679992211}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -10.53, y: 0.0063, z: 0}
-  m_LocalScale: {x: 19.862196, y: 1.3634123, z: 1}
+  m_LocalPosition: {x: -68.1589, y: -32.7546, z: 0}
+  m_LocalScale: {x: 70.80547, y: 4.9738483, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3448,7 +3424,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3578,7 +3554,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3708,7 +3684,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3747,7 +3723,7 @@ GameObject:
   - component: {fileID: 869657746}
   m_Layer: 6
   m_Name: Bullet Aimer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3831,7 +3807,7 @@ GameObject:
   - component: {fileID: 896927015}
   m_Layer: 6
   m_Name: Left Arm Object
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3889,7 +3865,7 @@ GameObject:
   - component: {fileID: 899948956}
   m_Layer: 6
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4086,7 +4062,7 @@ GameObject:
   - component: {fileID: 956576942}
   m_Layer: 0
   m_Name: Moving Audio
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4215,7 +4191,7 @@ GameObject:
   - component: {fileID: 973322448}
   - component: {fileID: 973322447}
   - component: {fileID: 973322450}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Belly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4434,7 +4410,7 @@ GameObject:
   - component: {fileID: 986381201}
   m_Layer: 6
   m_Name: Right Foot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4620,7 +4596,7 @@ GameObject:
   - component: {fileID: 1023672416}
   m_Layer: 6
   m_Name: Kick Box
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4634,8 +4610,8 @@ Transform:
   m_GameObject: {fileID: 1023672412}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.027, y: 0.199, z: 0}
-  m_LocalScale: {x: 8.443036, y: 12.830421, z: 1}
+  m_LocalPosition: {x: -0.269, y: 0.199, z: 0}
+  m_LocalScale: {x: 6.449306, y: 10.162722, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 369946889}
@@ -4852,7 +4828,7 @@ GameObject:
   - component: {fileID: 1117704105}
   m_Layer: 6
   m_Name: Left Arm
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4994,7 +4970,7 @@ GameObject:
   - component: {fileID: 1146189001}
   m_Layer: 6
   m_Name: Left Foot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5269,7 +5245,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5290,8 +5266,8 @@ Transform:
   m_GameObject: {fileID: 1161833296}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7016626, w: 0.7125094}
-  m_LocalPosition: {x: -3.24, y: 8.13, z: 0}
-  m_LocalScale: {x: 9.281977, y: 1, z: 1}
+  m_LocalPosition: {x: -41.5638, y: -3.7944, z: 0}
+  m_LocalScale: {x: 33.08873, y: 3.6480882, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -5361,7 +5337,7 @@ Transform:
   m_GameObject: {fileID: 1281546426}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.003, y: 1.978, z: -10}
+  m_LocalPosition: {x: -18.53, y: -41.6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5566,7 +5542,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5587,8 +5563,8 @@ Transform:
   m_GameObject: {fileID: 1414044676}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 9.56, z: 0}
-  m_LocalScale: {x: 22.291012, y: 1, z: 1}
+  m_LocalPosition: {x: -29.9261, y: 1.3035, z: 0}
+  m_LocalScale: {x: 81.31958, y: 3.5648363, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -5651,7 +5627,7 @@ GameObject:
   - component: {fileID: 1471418055}
   - component: {fileID: 1471418054}
   - component: {fileID: 1471418057}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Dorsal Fin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6114,7 +6090,7 @@ GameObject:
   - component: {fileID: 1559674696}
   - component: {fileID: 1559674695}
   - component: {fileID: 1559674698}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Left Pectoral Fin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6322,7 +6298,7 @@ GameObject:
   - component: {fileID: 1634352198}
   - component: {fileID: 1634352197}
   - component: {fileID: 1634352200}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tail Fin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6559,7 +6535,7 @@ GameObject:
   - component: {fileID: 1714797942}
   m_Layer: 6
   m_Name: Audio
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6770,7 +6746,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6809,7 +6785,7 @@ GameObject:
   - component: {fileID: 1797301405}
   m_Layer: 0
   m_Name: Colliding Audio
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6938,7 +6914,7 @@ GameObject:
   - component: {fileID: 1893077298}
   - component: {fileID: 1893077297}
   - component: {fileID: 1893077300}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7149,7 +7125,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.58, y: -0.27}
-  m_ConnectedAnchor: {x: -0.5799999, y: -0.27000013}
+  m_ConnectedAnchor: {x: -0.57999927, y: -0.26999918}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -7395,7 +7371,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7416,8 +7392,8 @@ Transform:
   m_GameObject: {fileID: 1979187844}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0243, y: -9.47, z: 0}
-  m_LocalScale: {x: 22.291012, y: 1, z: 1}
+  m_LocalPosition: {x: -29.8321, y: -66.537, z: 0}
+  m_LocalScale: {x: 81.31958, y: 3.5648363, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -7434,7 +7410,7 @@ GameObject:
   - component: {fileID: 2097124656}
   m_Layer: 6
   m_Name: Gun
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7520,7 +7496,7 @@ GameObject:
   - component: {fileID: 2109012684}
   m_Layer: 6
   m_Name: Bullet Spawner
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

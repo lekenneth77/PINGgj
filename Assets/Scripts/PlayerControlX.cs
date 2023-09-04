@@ -69,7 +69,10 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
 
     
     public void HitObject(){
-        jumpBuffer = jumpBufferMax;
+        if(!onJumpCD){
+            jumpBuffer = jumpBufferMax;
+
+        }
     }
     
 
@@ -93,6 +96,7 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         rb.AddForce(inputVel * jumpForce);
         jumpSFX?.Play();
         StartCoroutine("JumpCooldown");
+        jumpBuffer = 0;
     }
 
     private IEnumerator JumpCooldown() {
