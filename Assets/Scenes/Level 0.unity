@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1151532467076984354, guid: ab94e81342734544db546a4290b9b0ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1636499298151514173, guid: ab94e81342734544db546a4290b9b0ce, type: 3}
       propertyPath: m_Name
       value: Room Capacious (1)
@@ -185,6 +189,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6786411532373893630, guid: ab94e81342734544db546a4290b9b0ce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7367940487673793121, guid: ab94e81342734544db546a4290b9b0ce, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -329,11 +337,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room HRectangular (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3660140811965523664, guid: 2cd1c51e0f293034ebff838f7e42f87b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5789244246725289668, guid: 2cd1c51e0f293034ebff838f7e42f87b, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6275150021452687875, guid: 2cd1c51e0f293034ebff838f7e42f87b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731554595622187309, guid: 2cd1c51e0f293034ebff838f7e42f87b, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -366,7 +382,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room Capacious
       objectReference: {fileID: 0}
+    - target: {fileID: 3022967748478363135, guid: ab94e81342734544db546a4290b9b0ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3938375495771888514, guid: ab94e81342734544db546a4290b9b0ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4926552490843101460, guid: ab94e81342734544db546a4290b9b0ce, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -410,6 +434,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7367940487673793121, guid: ab94e81342734544db546a4290b9b0ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -423,6 +451,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1128272350943122801, guid: 1f49001744033ec4a9c59789182aa257, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421413400697287657, guid: 1f49001744033ec4a9c59789182aa257, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2126290353983822436, guid: 1f49001744033ec4a9c59789182aa257, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -536,9 +572,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3057558498450943392, guid: 5d700068b5cba2547be0a787d6a9ebb6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3378515078955828365, guid: 5d700068b5cba2547be0a787d6a9ebb6, type: 3}
       propertyPath: m_Name
       value: Room Basic (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3614006938367713027, guid: 5d700068b5cba2547be0a787d6a9ebb6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8904431041560517440, guid: 5d700068b5cba2547be0a787d6a9ebb6, type: 3}
       propertyPath: m_IsActive
@@ -613,6 +657,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room Basic (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4330364945403157949, guid: 5d700068b5cba2547be0a787d6a9ebb6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6949607128511628985, guid: 5d700068b5cba2547be0a787d6a9ebb6, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -630,6 +678,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1128272350943122801, guid: 1f49001744033ec4a9c59789182aa257, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480329745035156238, guid: 1f49001744033ec4a9c59789182aa257, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2126290353983822436, guid: 1f49001744033ec4a9c59789182aa257, type: 3}
       propertyPath: m_LocalPosition.x
       value: 80
@@ -755,6 +811,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room Basic (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3614006938367713027, guid: 5d700068b5cba2547be0a787d6a9ebb6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330364945403157949, guid: 5d700068b5cba2547be0a787d6a9ebb6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -768,6 +832,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 192047420797770775, guid: 2cd1c51e0f293034ebff838f7e42f87b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 264984275063312859, guid: 2cd1c51e0f293034ebff838f7e42f87b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -809,6 +877,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1335172800187204255, guid: 2cd1c51e0f293034ebff838f7e42f87b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435482683564607861, guid: 2cd1c51e0f293034ebff838f7e42f87b, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
