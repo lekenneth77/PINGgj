@@ -147,9 +147,9 @@ public class Swordfish : MonoBehaviour
             hitWall = true;
         }
 
-        if(other.CompareTag("Player")){
+        if(other.CompareTag("Player") && endAttack){
             endAttack = false;
-            print("kill");
+            player.transform.parent.GetComponent<PlayerControlX>().controls.Dispose();
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         }
     }

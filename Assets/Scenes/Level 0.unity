@@ -1168,6 +1168,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 180427936090568677, guid: 26c7ab812d1a2294da284338cd7b23d8, type: 3}
   m_PrefabInstance: {fileID: 1834973292}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &312087922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 312087923}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &312087923
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312087922}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -77.04, y: -0.49, z: 0.22755706}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &316067250
 GameObject:
   m_ObjectHideFlags: 0
@@ -9760,6 +9791,18 @@ PrefabInstance:
       propertyPath: bulletTxt
       value: 
       objectReference: {fileID: 1798866220}
+    - target: {fileID: 3920368271739991185, guid: 7a69c908947ca0b48ba8c1901cf7b5e8, type: 3}
+      propertyPath: jumpForce
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920368271739991185, guid: 7a69c908947ca0b48ba8c1901cf7b5e8, type: 3}
+      propertyPath: spawnpoint
+      value: 
+      objectReference: {fileID: 312087923}
+    - target: {fileID: 3920368271739991185, guid: 7a69c908947ca0b48ba8c1901cf7b5e8, type: 3}
+      propertyPath: recoilSpeed
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 4930231736601148983, guid: 7a69c908947ca0b48ba8c1901cf7b5e8, type: 3}
       propertyPath: m_Name
       value: Penguin
@@ -11377,6 +11420,7 @@ SceneRoots:
   - {fileID: 1871377997}
   - {fileID: 1329787490}
   - {fileID: 2070895503}
+  - {fileID: 312087923}
   - {fileID: 9780327}
   - {fileID: 2054792511}
   - {fileID: 1122760796}

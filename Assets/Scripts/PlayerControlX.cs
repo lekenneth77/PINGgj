@@ -8,13 +8,15 @@ using UnityEngine.UI;
 public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
 {
 
-    public float rotSpeed = 200f;
     public float speed = 10f;
-    public float jumpForce = 750f;
+    public float jumpForce = 2000;
 
-    public float recoilSpeed = 400f;
+    public float recoilSpeed = 1000f;
+
     public bool isGrounded;
     public bool isFlipped;
+
+    public Rigidbody2D jumpedOffOf;
 
     public GunController gun;
 
@@ -23,7 +25,7 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
     public TextMeshProUGUI bulletTxt;
 
     public AudioSource jumpSFX, shootSFX, moveSFX;
-    private int maxBullets = 50;
+    private int maxBullets = 8;
     private int currBullets;
     public Rigidbody2D rb;
     private Vector2 inputVel;
@@ -32,14 +34,17 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
     private float jumpCooldown = 0.75f;
     private float jumpBuffer = 0;
     public float jumpBufferMax = .5f;
-    private bool jumpBufferCD = true;
+
+    private bool onShootCD;
+    private float shootCD = 0.5f;
 
     public Image oxyMeter;
     private float maxTime = 300f;
     private float currentTime;
 
-    private Controls controls;
+    public Controls controls;
 
+    public Transform spawnpoint;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +56,7 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         currBullets = maxBullets;
         bulletTxt.text = currBullets + " / " + maxBullets;
         currentTime = maxTime;
+        
     }
 
     // Update is called once per frame
@@ -102,6 +108,9 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         if (!context.performed || onJumpCD || jumpBuffer < 0) { return; }
         Debug.Log("Jump");
         rb.AddForce(inputVel * jumpForce);
+
+        jumpedOffOf?.AddForce(-(inputVel * jumpForce) * 0.25f);
+
         if (jumpSFX) {
             jumpSFX?.Play();
         }
@@ -128,7 +137,7 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-        if (!context.performed || currBullets <= 0) { return; }
+        if (!context.performed || currBullets <= 0 || onShootCD) { return; }
         // Debug.Log("Shoot!");
         Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 shootDir = (mouse - new Vector2(body.transform.position.x, body.transform.position.y)).normalized;
@@ -139,6 +148,14 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         if (shootSFX) {
             shootSFX?.Play();
         }
+        StartCoroutine("ShootCooldown");
+    }
+
+    private IEnumerator ShootCooldown()
+    {
+        onShootCD = true;
+        yield return new WaitForSeconds(shootCD);
+        onShootCD = false;
     }
 
     public void OnFlip(InputAction.CallbackContext context) {
