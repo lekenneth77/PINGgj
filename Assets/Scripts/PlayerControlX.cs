@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
 {
@@ -36,11 +37,11 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
     public float jumpBufferMax = .5f;
 
     private bool onShootCD;
-    private float shootCD = 0.5f;
+    private float shootCD = 0.25f;
 
     public Image oxyMeter;
     private float maxTime = 300f;
-    private float currentTime;
+    public float currentTime;
 
     public Controls controls;
 
@@ -74,6 +75,11 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         jumpBuffer -= Time.deltaTime;
         currentTime -= Time.deltaTime;
         oxyMeter.fillAmount = currentTime / maxTime;
+        if (currentTime <= 0f) {
+            currentTime = 1000f;
+            controls.Dispose();
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+        }
     }
 
     void FixedUpdate()
