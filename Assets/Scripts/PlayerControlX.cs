@@ -25,7 +25,7 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
 
     public TextMeshProUGUI bulletTxt;
 
-    public AudioSource jumpSFX, shootSFX, moveSFX;
+    public AudioSource jumpSFX, shootSFX, moveSFX, hurtSFX;
     private int maxBullets = 8;
     private int currBullets;
     public Rigidbody2D rb;
@@ -57,7 +57,8 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         currBullets = maxBullets;
         bulletTxt.text = currBullets + " / " + maxBullets;
         currentTime = maxTime;
-        
+
+        Swordfish.HitPenguin += GotHit;
     }
 
     // Update is called once per frame
@@ -93,6 +94,12 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
             jumpBuffer = jumpBufferMax;
 
         }
+    }
+
+    public void GotHit()
+    {
+        currentTime -= 30f;
+        hurtSFX.Play();
     }
     
 

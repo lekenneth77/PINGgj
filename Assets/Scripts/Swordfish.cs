@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,6 +48,7 @@ public class Swordfish : MonoBehaviour
     public SpriteRenderer[] limbs;
     private float TimeSinceDamaged = 1;
 
+    public static event Action HitPenguin;
 
     // Start is called before the first frame update
     void Start()
@@ -107,7 +109,7 @@ public class Swordfish : MonoBehaviour
         if (currentInterval != Mathf.Floor(Time.time / roamDist))
         {
             currentInterval = Mathf.Floor(Time.time / roamDist);
-            nextDir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+            nextDir = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)).normalized;
         }
         rb.velocity = (nextDir * roamSpeed);
     }
@@ -117,7 +119,7 @@ public class Swordfish : MonoBehaviour
 
         int layerMask = 1 << 7;
         layerMask = ~layerMask;
-        float rayDist = isBoss ? 30f : 15f;
+        float rayDist = isBoss ? 40f : 15f;
         Vector2 rayDir = (new Vector2(player.position.x, player.position.y) - new Vector2(transform.position.x, transform.position.y)).normalized;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDir, rayDist, layerMask);
         if (hit && hit.collider.CompareTag("Player"))
@@ -156,7 +158,8 @@ public class Swordfish : MonoBehaviour
         startedAttacking = true;
         rb.velocity = Vector3.zero;
         alertSFX.Play();
-        chargeTime = 2f;
+        chargeTime = isBoss ? 1.3f : 2f;
+
         while (chargeTime > 0)
         {
             chargeTime -= Time.deltaTime;
@@ -218,9 +221,10 @@ public class Swordfish : MonoBehaviour
             endAttack = false;
             startedAttacking = false;
             isAttacking = false;
-            StopAllCoroutines();
+            //StopAllCoroutines();
             if(other.CompareTag("Player")){
-                player.transform.parent.GetComponent<PlayerControlX>().currentTime -= 30f;
+                HitPenguin?.Invoke();
+                //player.transform.parent.GetComponent<PlayerControlX>().currentTime -= 30f;
             } 
             //SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         }
@@ -258,7 +262,7 @@ public class Swordfish : MonoBehaviour
     }
 
     private IEnumerator BossDead() {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(6f);
         SceneManager.LoadSceneAsync("End Screen");
     }
 
