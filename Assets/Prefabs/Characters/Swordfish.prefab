@@ -1520,6 +1520,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9839894dd9634604c99b8a0a31a5ae25, type: 3}
   - {fileID: 21300000, guid: 76d3a6826b5ef754f8ed4bbf1b794c56, type: 3}
   - {fileID: 21300000, guid: 4317b3490b9b5114ca6fd23afde835ba, type: 3}
+  limbs:
+  - {fileID: 4162470039986757896}
+  - {fileID: 8479610462288743141}
+  - {fileID: 5255608716798319645}
+  - {fileID: 3132329690447123348}
+  - {fileID: 5339507983152947327}
+  - {fileID: 8001004289071203484}
+  - {fileID: 5664064604428494725}
+  - {fileID: 3677556206261131417}
+  - {fileID: 8930064176156845052}
 --- !u!58 &6485074997706197056
 CircleCollider2D:
   m_ObjectHideFlags: 0

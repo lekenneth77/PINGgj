@@ -39,6 +39,10 @@ public class Swordfish : MonoBehaviour
 
     public Sprite[] damageSprites;
 
+
+    public SpriteRenderer[] limbs;
+    public float TimeSinceDamaged;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +55,12 @@ public class Swordfish : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(endAttack){
+
+        foreach (SpriteRenderer limb in limbs) {
+            limb.color = Color.Lerp(Color.red, Color.white, Mathf.Clamp(TimeSinceDamaged, 0, 1));
+        }
+        TimeSinceDamaged += Time.deltaTime;
+        if (endAttack){
             rb.velocity =  chargeDir * chargeSpeed;
         }
         
@@ -67,8 +76,7 @@ public class Swordfish : MonoBehaviour
         } else{
             StartCoroutine("AttackPlayer");
         }
-        
-        
+
     }
 
     
@@ -162,6 +170,8 @@ public class Swordfish : MonoBehaviour
         health--;
         headSprite.sprite = damageSprites[health];
         dead = health <= 0;
+        if (dead) return;
+        TimeSinceDamaged = 0;
     }
 
 }
