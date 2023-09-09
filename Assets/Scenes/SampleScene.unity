@@ -5499,6 +5499,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1088710051955179035, guid: 8e4c65d83d6bc714990be45db01ac54a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 8.399902
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088710051955179035, guid: 8e4c65d83d6bc714990be45db01ac54a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 40.099976
+      objectReference: {fileID: 0}
     - target: {fileID: 1157348556985762139, guid: 8e4c65d83d6bc714990be45db01ac54a, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -5510,6 +5518,10 @@ PrefabInstance:
     - target: {fileID: 2744494388247920635, guid: 8e4c65d83d6bc714990be45db01ac54a, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3942571389546447652, guid: 8e4c65d83d6bc714990be45db01ac54a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 53.899902
       objectReference: {fileID: 0}
     - target: {fileID: 4620219965773922667, guid: 8e4c65d83d6bc714990be45db01ac54a, type: 3}
       propertyPath: m_IsActive
@@ -5599,9 +5611,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8080766305153393207, guid: 8e4c65d83d6bc714990be45db01ac54a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 53.19995
+      objectReference: {fileID: 0}
     - target: {fileID: 8318679055786956029, guid: 8e4c65d83d6bc714990be45db01ac54a, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405608049811507496, guid: 8e4c65d83d6bc714990be45db01ac54a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 53.19995
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405608049811507496, guid: 8e4c65d83d6bc714990be45db01ac54a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 94.599976
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5645,7 +5669,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1165981778852205544, guid: 7a69c908947ca0b48ba8c1901cf7b5e8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3920368271739991185, guid: 7a69c908947ca0b48ba8c1901cf7b5e8, type: 3}
       propertyPath: oriBox

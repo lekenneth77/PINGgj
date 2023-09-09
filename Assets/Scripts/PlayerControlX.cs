@@ -44,7 +44,7 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
     private GameObject jumpHighlighter;
     public Image[] jumpTypes;
     private int prevJump = 0;
-    private int whichJump;
+    private int whichJump = 0;
     private bool earlyHold; //JANK
 
     // Start is called before the first frame update
@@ -60,7 +60,8 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
 
         jumpBox = normalJumpBox;
         jumpHighlighter = jumpBox.transform.GetChild(0).gameObject;
-
+        whichJump = 0;
+        jumpBuffer = 0;
         Swordfish.HitPenguin += GotHit;
     }
 
@@ -196,11 +197,11 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
 
         Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mouseDir = (mouse - new Vector2(rb.position.x, rb.position.y)).normalized;
-
         switch (whichJump)
         {
             case 0:
                 //on press: dir wasd
+                Debug.Log("Hey?");
                 if (!context.performed) { return; }
                 rb.AddForce(inputVel * jumpForce * slider.value);
                 Jumped();
