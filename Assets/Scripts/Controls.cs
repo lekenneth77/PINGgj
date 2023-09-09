@@ -71,6 +71,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapJump"",
+                    ""type"": ""Button"",
+                    ""id"": ""c4f6f9e4-2d74-46c9-8be6-a368a5f72631"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,94 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Flip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d329555-e484-49ea-8eb4-4e527433cd4e"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": """",
+                    ""action"": ""SwapJump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b482db87-031c-41aa-8623-2dca0eec1dd0"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=2)"",
+                    ""groups"": """",
+                    ""action"": ""SwapJump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""618ad9d6-0ac5-43a7-8693-4f43464f5261"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=3)"",
+                    ""groups"": """",
+                    ""action"": ""SwapJump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a87b95d-be2a-40c3-99cd-213de62958da"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=4)"",
+                    ""groups"": """",
+                    ""action"": ""SwapJump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d40e5b4f-3961-49d9-9182-f6b17c548971"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=5)"",
+                    ""groups"": """",
+                    ""action"": ""SwapJump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""be068dec-679f-4f24-8bb6-46eb1425fa3c"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=6)"",
+                    ""groups"": """",
+                    ""action"": ""SwapJump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98271949-09b7-4a49-bf3c-32038f4b41f1"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=7)"",
+                    ""groups"": """",
+                    ""action"": ""SwapJump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e9db6bd9-06c3-4674-b32d-61d88c5c909e"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=8)"",
+                    ""groups"": """",
+                    ""action"": ""SwapJump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -185,6 +282,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_PlayerBinds_Reload = m_PlayerBinds.FindAction("Reload", throwIfNotFound: true);
         m_PlayerBinds_Shoot = m_PlayerBinds.FindAction("Shoot", throwIfNotFound: true);
         m_PlayerBinds_Flip = m_PlayerBinds.FindAction("Flip", throwIfNotFound: true);
+        m_PlayerBinds_SwapJump = m_PlayerBinds.FindAction("SwapJump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,6 +349,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerBinds_Reload;
     private readonly InputAction m_PlayerBinds_Shoot;
     private readonly InputAction m_PlayerBinds_Flip;
+    private readonly InputAction m_PlayerBinds_SwapJump;
     public struct PlayerBindsActions
     {
         private @Controls m_Wrapper;
@@ -260,6 +359,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Reload => m_Wrapper.m_PlayerBinds_Reload;
         public InputAction @Shoot => m_Wrapper.m_PlayerBinds_Shoot;
         public InputAction @Flip => m_Wrapper.m_PlayerBinds_Flip;
+        public InputAction @SwapJump => m_Wrapper.m_PlayerBinds_SwapJump;
         public InputActionMap Get() { return m_Wrapper.m_PlayerBinds; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -284,6 +384,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Flip.started += instance.OnFlip;
             @Flip.performed += instance.OnFlip;
             @Flip.canceled += instance.OnFlip;
+            @SwapJump.started += instance.OnSwapJump;
+            @SwapJump.performed += instance.OnSwapJump;
+            @SwapJump.canceled += instance.OnSwapJump;
         }
 
         private void UnregisterCallbacks(IPlayerBindsActions instance)
@@ -303,6 +406,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Flip.started -= instance.OnFlip;
             @Flip.performed -= instance.OnFlip;
             @Flip.canceled -= instance.OnFlip;
+            @SwapJump.started -= instance.OnSwapJump;
+            @SwapJump.performed -= instance.OnSwapJump;
+            @SwapJump.canceled -= instance.OnSwapJump;
         }
 
         public void RemoveCallbacks(IPlayerBindsActions instance)
@@ -327,5 +433,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnReload(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnFlip(InputAction.CallbackContext context);
+        void OnSwapJump(InputAction.CallbackContext context);
     }
 }
