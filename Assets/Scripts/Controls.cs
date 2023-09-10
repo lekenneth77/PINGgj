@@ -80,6 +80,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadCourse"",
+                    ""type"": ""Button"",
+                    ""id"": ""d8efdb6e-a29d-4eaf-afbd-7f0cf49a5684"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -269,6 +278,61 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""SwapJump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25575ea8-66dd-483e-adc7-a3d0aa7e543f"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=0)"",
+                    ""groups"": """",
+                    ""action"": ""LoadCourse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0995852-93eb-4332-ae68-2fe6bab5e1e3"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": """",
+                    ""action"": ""LoadCourse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""727172dc-f507-4757-980d-a6659ee0dd9b"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=2)"",
+                    ""groups"": """",
+                    ""action"": ""LoadCourse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df782e48-e76a-4cd9-a892-44025b6d02f1"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=3)"",
+                    ""groups"": """",
+                    ""action"": ""LoadCourse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""441dde6f-3c9f-444f-9449-fb8e9d2db1e2"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=4)"",
+                    ""groups"": """",
+                    ""action"": ""LoadCourse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -283,6 +347,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_PlayerBinds_Shoot = m_PlayerBinds.FindAction("Shoot", throwIfNotFound: true);
         m_PlayerBinds_Flip = m_PlayerBinds.FindAction("Flip", throwIfNotFound: true);
         m_PlayerBinds_SwapJump = m_PlayerBinds.FindAction("SwapJump", throwIfNotFound: true);
+        m_PlayerBinds_LoadCourse = m_PlayerBinds.FindAction("LoadCourse", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -350,6 +415,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerBinds_Shoot;
     private readonly InputAction m_PlayerBinds_Flip;
     private readonly InputAction m_PlayerBinds_SwapJump;
+    private readonly InputAction m_PlayerBinds_LoadCourse;
     public struct PlayerBindsActions
     {
         private @Controls m_Wrapper;
@@ -360,6 +426,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_PlayerBinds_Shoot;
         public InputAction @Flip => m_Wrapper.m_PlayerBinds_Flip;
         public InputAction @SwapJump => m_Wrapper.m_PlayerBinds_SwapJump;
+        public InputAction @LoadCourse => m_Wrapper.m_PlayerBinds_LoadCourse;
         public InputActionMap Get() { return m_Wrapper.m_PlayerBinds; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -387,6 +454,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @SwapJump.started += instance.OnSwapJump;
             @SwapJump.performed += instance.OnSwapJump;
             @SwapJump.canceled += instance.OnSwapJump;
+            @LoadCourse.started += instance.OnLoadCourse;
+            @LoadCourse.performed += instance.OnLoadCourse;
+            @LoadCourse.canceled += instance.OnLoadCourse;
         }
 
         private void UnregisterCallbacks(IPlayerBindsActions instance)
@@ -409,6 +479,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @SwapJump.started -= instance.OnSwapJump;
             @SwapJump.performed -= instance.OnSwapJump;
             @SwapJump.canceled -= instance.OnSwapJump;
+            @LoadCourse.started -= instance.OnLoadCourse;
+            @LoadCourse.performed -= instance.OnLoadCourse;
+            @LoadCourse.canceled -= instance.OnLoadCourse;
         }
 
         public void RemoveCallbacks(IPlayerBindsActions instance)
@@ -434,5 +507,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnFlip(InputAction.CallbackContext context);
         void OnSwapJump(InputAction.CallbackContext context);
+        void OnLoadCourse(InputAction.CallbackContext context);
     }
 }

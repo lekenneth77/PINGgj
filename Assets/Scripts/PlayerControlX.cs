@@ -40,12 +40,15 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
     public Slider slider;
     public Collider2D oriBox;
     public Collider2D normalJumpBox;
-    private Collider2D jumpBox;
+    private static Collider2D jumpBox;
     private GameObject jumpHighlighter;
     public Image[] jumpTypes;
-    private int prevJump = 0;
-    private int whichJump = 0;
+    private static int prevJump = 0;
+    private static int whichJump = -1;
+    private static bool useOriJump;
     private bool earlyHold; //JANK
+
+    public GameObject minimap;
 
     // Start is called before the first frame update
     void Start()
@@ -58,11 +61,38 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         bulletTxt.text = currBullets + " / " + maxBullets;
         currentTime = maxTime;
 
-        jumpBox = normalJumpBox;
+       
+        if (whichJump != -1) {
+            Color tmp = jumpTypes[0].color;
+            tmp.a = 0.25f;
+            jumpTypes[0].color = tmp;
+            tmp = jumpTypes[prevJump].color;
+            tmp.a = 0.25f;
+            jumpTypes[prevJump].color = tmp;
+            tmp = jumpTypes[whichJump].color;
+            tmp.a = 1f;
+            jumpTypes[whichJump].color = tmp;
+
+        } else {
+            whichJump = 0;
+            jumpBox = normalJumpBox;
+            jumpHighlighter = jumpBox.transform.GetChild(0).gameObject;
+        }
+
+         if (whichJump >= 5) {
+            oriBox.gameObject.SetActive(true);
+            normalJumpBox.gameObject.SetActive(false);
+            jumpBox = oriBox;
+        } else {
+            oriBox.gameObject.SetActive(false);
+            normalJumpBox.gameObject.SetActive(true);
+            jumpBox = normalJumpBox;
+        }
         jumpHighlighter = jumpBox.transform.GetChild(0).gameObject;
-        whichJump = 0;
+
         jumpBuffer = 0;
         Swordfish.HitPenguin += GotHit;
+        minimap.SetActive(true);
     }
 
     // Update is called once per frame
@@ -201,7 +231,6 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         {
             case 0:
                 //on press: dir wasd
-                Debug.Log("Hey?");
                 if (!context.performed) { return; }
                 rb.AddForce(inputVel * jumpForce * slider.value);
                 Jumped();
@@ -328,5 +357,15 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
             jumpBox = normalJumpBox;
         }
         jumpHighlighter = jumpBox.transform.GetChild(0).gameObject;
+    }
+
+    public string[] courses = new string[] { "SampleScene", "CourseOne", "CourseTwo", "CourseThree", "CourseFour" };
+    public void OnLoadCourse(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+        int i = (int)context.ReadValue<float>();
+        string name = courses[i];
+        controls.Dispose();
+        SceneManager.LoadSceneAsync(name);
     }
 }

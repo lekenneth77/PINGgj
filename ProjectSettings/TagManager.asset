@@ -15,10 +15,10 @@ TagManager:
   - UI
   - Player
   - Enemy
-  - 
-  - 
-  - 
-  - 
+  - Target
+  - Fire
+  - Main Camera
+  - Minimap
   - 
   - 
   - 

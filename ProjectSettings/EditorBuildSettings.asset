@@ -14,4 +14,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/End Screen.unity
     guid: 91dba9ce760edfe46885ecab337f5a76
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/CourseOne.unity
+    guid: 46a83d87d6cbb1c4eb840a8008dd0ebe
+  - enabled: 1
+    path: Assets/Scenes/CourseTwo.unity
+    guid: 26c7a37bce53e4a41a4ba172ad82ab43
+  - enabled: 1
+    path: Assets/Scenes/CourseThree.unity
+    guid: 66a57d829f87a7f4faefdca02cb2951c
+  - enabled: 1
+    path: Assets/Scenes/CourseFour.unity
+    guid: 6e3d93f99da74d24aa2a57b7c47f59c9
   m_configObjects: {}
