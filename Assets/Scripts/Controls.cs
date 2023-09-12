@@ -89,6 +89,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Grab"",
+                    ""type"": ""Button"",
+                    ""id"": ""526a7755-48ec-415b-9996-0acbdada3153"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -333,6 +342,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""LoadCourse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b106fea1-6274-4cc5-9a73-8600dcca3206"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -348,6 +368,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_PlayerBinds_Flip = m_PlayerBinds.FindAction("Flip", throwIfNotFound: true);
         m_PlayerBinds_SwapJump = m_PlayerBinds.FindAction("SwapJump", throwIfNotFound: true);
         m_PlayerBinds_LoadCourse = m_PlayerBinds.FindAction("LoadCourse", throwIfNotFound: true);
+        m_PlayerBinds_Grab = m_PlayerBinds.FindAction("Grab", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -416,6 +437,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerBinds_Flip;
     private readonly InputAction m_PlayerBinds_SwapJump;
     private readonly InputAction m_PlayerBinds_LoadCourse;
+    private readonly InputAction m_PlayerBinds_Grab;
     public struct PlayerBindsActions
     {
         private @Controls m_Wrapper;
@@ -427,6 +449,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Flip => m_Wrapper.m_PlayerBinds_Flip;
         public InputAction @SwapJump => m_Wrapper.m_PlayerBinds_SwapJump;
         public InputAction @LoadCourse => m_Wrapper.m_PlayerBinds_LoadCourse;
+        public InputAction @Grab => m_Wrapper.m_PlayerBinds_Grab;
         public InputActionMap Get() { return m_Wrapper.m_PlayerBinds; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -457,6 +480,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @LoadCourse.started += instance.OnLoadCourse;
             @LoadCourse.performed += instance.OnLoadCourse;
             @LoadCourse.canceled += instance.OnLoadCourse;
+            @Grab.started += instance.OnGrab;
+            @Grab.performed += instance.OnGrab;
+            @Grab.canceled += instance.OnGrab;
         }
 
         private void UnregisterCallbacks(IPlayerBindsActions instance)
@@ -482,6 +508,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @LoadCourse.started -= instance.OnLoadCourse;
             @LoadCourse.performed -= instance.OnLoadCourse;
             @LoadCourse.canceled -= instance.OnLoadCourse;
+            @Grab.started -= instance.OnGrab;
+            @Grab.performed -= instance.OnGrab;
+            @Grab.canceled -= instance.OnGrab;
         }
 
         public void RemoveCallbacks(IPlayerBindsActions instance)
@@ -508,5 +537,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnFlip(InputAction.CallbackContext context);
         void OnSwapJump(InputAction.CallbackContext context);
         void OnLoadCourse(InputAction.CallbackContext context);
+        void OnGrab(InputAction.CallbackContext context);
     }
 }

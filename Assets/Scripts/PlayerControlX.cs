@@ -45,9 +45,11 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
     public Image[] jumpTypes;
     private static int prevJump = 0;
     private static int whichJump = -1;
-    private static bool useOriJump;
     private bool earlyHold; //JANK
-
+    //public Transform 
+    private bool grabbing;
+    public Rigidbody2D grabObjSpot;
+    public float throwSpeed;
     public GameObject minimap;
 
     // Start is called before the first frame update
@@ -187,6 +189,11 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
             float a = Mathf.Rad2Deg * Mathf.Atan2(offset.y, offset.x) - 90f;
             jumpArrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, a));
         }
+
+        if (grabbing && jumpedOffOf) {
+            jumpedOffOf.position = grabObjSpot.position;
+            //jumpedOffOf.position = new Vector2(rb.position.x + 2f, rb.position.y);
+        }
     }
 
     void FixedUpdate()
@@ -296,9 +303,6 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         jumpBuffer = 0;
     }
 
-
-
-
     public void OnReload(InputAction.CallbackContext context)
     {
         if (!context.performed) { return; }
@@ -367,5 +371,23 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         string name = courses[i];
         controls.Dispose();
         SceneManager.LoadSceneAsync(name);
+    }
+
+    public void OnGrab(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+        if (!grabbing && jumpedOffOf) {
+            //grab object
+            grabbing = true;
+            jumpedOffOf.velocity = Vector2.zero;            
+        } else {
+            //throw object
+            grabbing = false;
+            jumpedOffOf.transform.parent = transform.parent;
+            Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mouseDir = (mouse - new Vector2(rb.position.x, rb.position.y)).normalized;
+            rb.AddForce(-mouseDir * throwSpeed);
+            jumpedOffOf.AddForce(mouseDir * throwSpeed);
+        }
     }
 }
