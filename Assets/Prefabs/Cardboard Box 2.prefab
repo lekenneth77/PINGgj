@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6749385115874631579}
   - component: {fileID: 4669918039691328876}
   - component: {fileID: 8489138450947853204}
+  - component: {fileID: 7011130430156044355}
   m_Layer: 0
   m_Name: Cardboard Box 2
   m_TagString: Box
@@ -158,3 +159,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.4384346, y: 5.3957977}
   m_EdgeRadius: 0
+--- !u!255 &7011130430156044355
+FixedJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8696384779374207287}
+  m_Enabled: 0
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_BreakAction: 3
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: -60, y: -59}
+  m_DampingRatio: 0
+  m_Frequency: 0

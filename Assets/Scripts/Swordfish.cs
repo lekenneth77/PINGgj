@@ -25,7 +25,7 @@ public class Swordfish : MonoBehaviour
     public bool isBoss;
 
 
-    private Vector2 chargeDir;
+    public Vector2 chargeDir;
 
     public float t = .2f;
 
@@ -43,6 +43,8 @@ public class Swordfish : MonoBehaviour
     private Vector2 startPos;
 
     public Sprite[] damageSprites;
+
+    public Rigidbody2D tail;
 
 
     public SpriteRenderer[] limbs;
@@ -84,7 +86,13 @@ public class Swordfish : MonoBehaviour
 
         if (hitWall)
         {
-            rb.position = stuckPos;
+            if (player.GetComponent<PlayerControlX>().jumpedOffOf == tail && player.GetComponent<PlayerControlX>().grabbing) {
+                hitWall = false;
+                rb.constraints = RigidbodyConstraints2D.None;
+            }
+            else {
+                rb.position = stuckPos;
+            }
             return;
         }
         if (startedAttacking) { return; }

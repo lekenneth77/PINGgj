@@ -19,7 +19,9 @@ public class KickBox : MonoBehaviour
         player.HitObject();
 
         if (other.GetComponent<Rigidbody2D>()) {
-            player.jumpedOffOf = other.GetComponent<Rigidbody2D>();
+            if (!player.jumpedOffOf) {
+                player.jumpedOffOf = other.GetComponent<Rigidbody2D>();
+            }
         } else
         {
             player.jumpedOffOf = null;

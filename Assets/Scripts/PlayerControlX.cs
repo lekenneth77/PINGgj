@@ -47,8 +47,7 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
     private static int whichJump = -1;
     private bool earlyHold; //JANK
     //public Transform 
-    private bool grabbing;
-    public Rigidbody2D grabObjSpot;
+    public bool grabbing;
     public float throwSpeed;
     public GameObject minimap;
 
@@ -121,6 +120,10 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         if (jumpBuffer < 0f)
         {
             jumpHighlighter.SetActive(false);
+            if (!grabbing)
+            {
+                jumpedOffOf = null;
+            }
         }
 
         if (Input.GetKey(KeyCode.Space) && whichJump >= 2)
@@ -190,10 +193,6 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
             jumpArrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, a));
         }
 
-        if (grabbing && jumpedOffOf) {
-            jumpedOffOf.position = grabObjSpot.position;
-            //jumpedOffOf.position = new Vector2(rb.position.x + 2f, rb.position.y);
-        }
     }
 
     void FixedUpdate()
@@ -379,15 +378,30 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         if (!grabbing && jumpedOffOf) {
             //grab object
             grabbing = true;
-            jumpedOffOf.velocity = Vector2.zero;            
-        } else {
+            jumpedOffOf.velocity = Vector2.zero;
+            jumpedOffOf.GetComponent<FixedJoint2D>().enabled = true;
+            jumpedOffOf.GetComponent<FixedJoint2D>().connectedBody = rb;
+        } else
+        {
             //throw object
+
             grabbing = false;
-            jumpedOffOf.transform.parent = transform.parent;
+            Rigidbody2D jankBody = jumpedOffOf;
+            if (!jumpedOffOf) { return; }
+            jankBody.GetComponent<FixedJoint2D>().enabled = false;
+            jankBody.GetComponent<FixedJoint2D>().connectedBody = null;
             Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mouseDir = (mouse - new Vector2(rb.position.x, rb.position.y)).normalized;
             rb.AddForce(-mouseDir * throwSpeed);
-            jumpedOffOf.AddForce(mouseDir * throwSpeed);
+            jankBody.AddForce(mouseDir * throwSpeed);
+            //DO NOT REUSE THIS CODE LOLOL THIS IS SO FUCKED
+            if (jankBody.transform.parent.childCount != 0 && jankBody.transform.parent.GetChild(0).GetComponent<Swordfish>()) {
+                Swordfish sword = jankBody.transform.parent.GetChild(0).GetComponent<Swordfish>();
+                sword.endAttack = false;
+                sword.chargeDir = -sword.transform.right;
+                sword.isCharging = true;
+                sword.endAttack = true;
+            }
         }
     }
 }
