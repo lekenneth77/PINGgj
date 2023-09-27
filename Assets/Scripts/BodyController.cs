@@ -23,5 +23,13 @@ public class BodyController : MonoBehaviour
         }
         //transform.localScale = new Vector3(sign * Mathf.Abs(transform.localScale.x), 1, 1);
     }
-   
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Vector2 norm = collision.contacts[0].normal;
+        Debug.Log(norm);
+        rb.AddForce(norm * 1000f);
+    }
+
+
 }

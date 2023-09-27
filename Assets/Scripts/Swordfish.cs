@@ -86,6 +86,10 @@ public class Swordfish : MonoBehaviour
 
         if (hitWall)
         {
+            if (player.transform.parent.GetComponent<PlayerControlX>().disableNewThings) { 
+                rb.position = stuckPos; 
+                return; 
+            }
             if (player.GetComponent<PlayerControlX>().jumpedOffOf == tail && player.GetComponent<PlayerControlX>().grabbing) {
                 hitWall = false;
                 rb.constraints = RigidbodyConstraints2D.None;

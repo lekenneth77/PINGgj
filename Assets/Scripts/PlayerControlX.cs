@@ -20,7 +20,7 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
     public TextMeshProUGUI bulletTxt;
     public AudioSource jumpSFX, shootSFX, moveSFX, hurtSFX;
 
-    private int maxBullets = 1000;
+    private int maxBullets = 8;
     private int currBullets;
     public Rigidbody2D rb;
     private Vector2 inputVel;
@@ -31,7 +31,7 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
     private bool onShootCD;
     private float shootCD = 0.25f;
     public Image oxyMeter;
-    private float maxTime = 3000f;
+    private float maxTime = 300f;
     public float currentTime;
     public Controls controls;
     public Transform spawnpoint;
@@ -50,6 +50,7 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
     public bool grabbing;
     public float throwSpeed;
     public GameObject minimap;
+    public bool disableNewThings;
 
     // Start is called before the first frame update
     void Start()
@@ -62,8 +63,21 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         bulletTxt.text = currBullets + " / " + maxBullets;
         currentTime = maxTime;
 
-       
-        if (whichJump != -1) {
+        if (minimap) {
+            minimap.SetActive(true);
+        }
+
+        
+        if (disableNewThings) {
+            controls.PlayerBinds.Grab.Disable();
+            controls.PlayerBinds.LoadCourse.Disable();
+            controls.PlayerBinds.SwapJump.Disable();
+            whichJump = 0;
+            jumpBox = normalJumpBox;
+            jumpHighlighter = jumpBox.transform.GetChild(0).gameObject;
+        } else
+        {
+            if (whichJump != -1) {
             Color tmp = jumpTypes[0].color;
             tmp.a = 0.25f;
             jumpTypes[0].color = tmp;
@@ -74,26 +88,25 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
             tmp.a = 1f;
             jumpTypes[whichJump].color = tmp;
 
-        } else {
-            whichJump = 0;
-            jumpBox = normalJumpBox;
+            } else {
+                whichJump = 0;
+                jumpBox = normalJumpBox;
+                jumpHighlighter = jumpBox.transform.GetChild(0).gameObject;
+            }
+            if (whichJump >= 5) {
+                oriBox.gameObject.SetActive(true);
+                normalJumpBox.gameObject.SetActive(false);
+                jumpBox = oriBox;
+            } else {
+                oriBox.gameObject.SetActive(false);
+                normalJumpBox.gameObject.SetActive(true);
+                jumpBox = normalJumpBox;
+            }
             jumpHighlighter = jumpBox.transform.GetChild(0).gameObject;
         }
 
-         if (whichJump >= 5) {
-            oriBox.gameObject.SetActive(true);
-            normalJumpBox.gameObject.SetActive(false);
-            jumpBox = oriBox;
-        } else {
-            oriBox.gameObject.SetActive(false);
-            normalJumpBox.gameObject.SetActive(true);
-            jumpBox = normalJumpBox;
-        }
-        jumpHighlighter = jumpBox.transform.GetChild(0).gameObject;
-
         jumpBuffer = 0;
         Swordfish.HitPenguin += GotHit;
-        minimap.SetActive(true);
     }
 
     // Update is called once per frame
@@ -119,7 +132,7 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         }
         if (jumpBuffer < 0f)
         {
-            jumpHighlighter.SetActive(false);
+            jumpHighlighter?.SetActive(false);
             if (!grabbing)
             {
                 jumpedOffOf = null;
@@ -175,22 +188,24 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
             Jumped();
         }
         
-        if (whichJump == 0 || whichJump == 2 || whichJump == 5) {
-            Vector2 offset = inputVel;
-            float a = Mathf.Rad2Deg * Mathf.Atan2(-offset.x, offset.y);
-            jumpArrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, a));
-        } else if (whichJump == 4 || whichJump == 7) {
-            Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 offset = mouse - new Vector2(rb.position.x, rb.position.y);
-            float a = Mathf.Rad2Deg * Mathf.Atan2(offset.y, offset.x) + 90f;
-            jumpArrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, a));
-        }
-        else
-        {
-            Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 offset = mouse - new Vector2(rb.position.x, rb.position.y);
-            float a = Mathf.Rad2Deg * Mathf.Atan2(offset.y, offset.x) - 90f;
-            jumpArrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, a));
+        if (!disableNewThings) {
+            if (whichJump == 0 || whichJump == 2 || whichJump == 5) {
+                Vector2 offset = inputVel;
+                float a = Mathf.Rad2Deg * Mathf.Atan2(-offset.x, offset.y);
+                jumpArrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, a));
+            } else if (whichJump == 4 || whichJump == 7) {
+                Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 offset = mouse - new Vector2(rb.position.x, rb.position.y);
+                float a = Mathf.Rad2Deg * Mathf.Atan2(offset.y, offset.x) + 90f;
+                jumpArrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, a));
+            }
+            else
+            {
+                Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 offset = mouse - new Vector2(rb.position.x, rb.position.y);
+                float a = Mathf.Rad2Deg * Mathf.Atan2(offset.y, offset.x) - 90f;
+                jumpArrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, a));
+            }
         }
 
     }
@@ -200,7 +215,6 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         rb.AddForce(inputVel * speed);
         
     }
-
     
     public void HitObject(){
         if(!onJumpCD){
@@ -233,6 +247,18 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
 
         Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mouseDir = (mouse - new Vector2(rb.position.x, rb.position.y)).normalized;
+
+        return;
+        if (disableNewThings) {
+            if (!context.performed) { return; }
+            rb.AddForce(inputVel * jumpForce);
+            jumpedOffOf?.AddForce(-(inputVel * jumpForce) * 0.25f);
+            Jumped();
+            return;
+        }
+
+
+
         switch (whichJump)
         {
             case 0:
@@ -280,7 +306,6 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
                 break;
         }
         
-        //jumpedOffOf?.AddForce(-(inputVel * jumpForce) * 0.25f);
 
         
     }
@@ -340,7 +365,7 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
 
     public void OnSwapJump(InputAction.CallbackContext context)
     {
-        if (!context.performed) { return; }
+        if (!context.performed || disableNewThings) { return; }
         whichJump = (int)context.ReadValue<float>() - 1;
         Color tmp = jumpTypes[prevJump].color;
         tmp.a = 0.25f;
@@ -365,16 +390,21 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
     public string[] courses = new string[] { "SampleScene", "CourseOne", "CourseTwo", "CourseThree", "CourseFour" };
     public void OnLoadCourse(InputAction.CallbackContext context)
     {
-        if (!context.performed) { return; }
+        if (!context.performed || disableNewThings ) { return; }
         int i = (int)context.ReadValue<float>();
         string name = courses[i];
         controls.Dispose();
         SceneManager.LoadSceneAsync(name);
     }
 
+    private void OnDestroy()
+    {
+        controls.Dispose();
+    }
+
     public void OnGrab(InputAction.CallbackContext context)
     {
-        if (!context.performed) { return; }
+        if (!context.performed ||disableNewThings) { return; }
         if (!grabbing && jumpedOffOf) {
             //grab object
             grabbing = true;
@@ -384,7 +414,6 @@ public class PlayerControlX : MonoBehaviour, Controls.IPlayerBindsActions
         } else
         {
             //throw object
-
             grabbing = false;
             Rigidbody2D jankBody = jumpedOffOf;
             if (!jumpedOffOf) { return; }
